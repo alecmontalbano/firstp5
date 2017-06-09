@@ -1,15 +1,27 @@
-var spot ={
-  x: 0,
+var Spot ={
+  x:0,
   y:0,
-  d:0
+  d:0,
+  col: {
+    r:0,
+    g:0,
+    b:0
+  },
+  colorPicker: function(){
+    this.col.r = random(100, 255);
+    this.col.b = random(100, 190);
+  },
+  blot: function(){
+    this.x = random(0, width);
+    this.y = random(0, height);
+    this.d = random(10, 75);
+  },
+  display: function() {
+    noStroke();
+    fill(this.col.r, this.col.g, this.col.b, 80);
+    ellipse(this.x, this.y, this.d, this.d);
+  }
 };
-
-var col = {
-  r:0,
-  g:0,
-  b:0
-};
-
 
 function setup() {
   createCanvas(1600, 900);
@@ -17,12 +29,9 @@ function setup() {
 }
 
 function draw() {
-  col.r = random(100, 255);
-  col.b = (100, 190);
-  spot.x = random(0, 1600);
-  spot.y = random(0, 900);
-  spot.d = random(10, 75);
-  noStroke();
-  fill(col.r, col.g, col.b, 80);
-  ellipse(spot.x, spot.y, spot.d, spot.d);
+  if (mouseIsPressed) {
+      Spot.colorPicker();
+      Spot.blot();
+      Spot.display();
+  }
 }
